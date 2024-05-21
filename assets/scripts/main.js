@@ -81,17 +81,20 @@ function initFormHandler() {
 		// B5. TODO - Create an empty object (we'll refer to this object as recipeObject to
 		//            make this easier to read), and then extract the keys and corresponding
 		//            values from the FormData object and insert them into recipeObject
-		const recipeObject = new Object.create(formData.keys(), formData.values());
+		const recipeObject = {};
+		formData.forEach((value, key) => {
+			recipeObject[key] = value;
+		});
 
 		// B6. TODO - Create a new <recipe-card> element
-		let recipeCardEl = document.createElement('recipe-card');
+		let recipeEl = document.createElement('recipe-card');
 
 		// B7. TODO - Add the recipeObject data to <recipe-card> using element.data
-		recipeCardEl.data = recipeObject;
+		recipeEl.data = recipeObject;
 
 		// B8. TODO - Append this new <recipe-card> to <main>
 		let mainEl = document.querySelector('main');
-		mainEl.append(recipeCardEl);
+		mainEl.append(recipeEl);
 
 		// B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
 		//            then save the recipes array back to localStorage
